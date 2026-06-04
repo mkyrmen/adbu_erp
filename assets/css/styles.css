@@ -1423,7 +1423,7 @@ body::after {
     .mobile-header .mh-cc {
         font-size: 1.2rem !important;
         font-weight: 800 !important;
-        background: linear-gradient(90deg, #5c6ef8, #3b4fd4) !important;
+        background: linear-gradient(90deg, #6366f1, #3b82f6, #1d4ed8) !important;
         -webkit-background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
         background-clip: text !important;
@@ -1449,12 +1449,14 @@ body::after {
         margin-left: auto !important;
         margin-right: auto !important;
         margin-top: 1.5rem !important;
-        padding: clamp(1rem, 5vw, 1.25rem) !important;
-        padding-bottom: 1.5rem !important;
-        background: #ffffff !important;
-        border-radius: 20px !important;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18) !important;
-        border: none !important;
+        padding: clamp(0.875rem, 5vw, 1.125rem) !important;
+        padding-bottom: 1.25rem !important;
+        background: rgba(255, 255, 255, 0.96) !important;
+        backdrop-filter: blur(24px) !important;
+        -webkit-backdrop-filter: blur(24px) !important;
+        border-radius: 24px !important;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12), 0 8px 16px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
         overflow: visible !important;
         transform: none !important;
         top: auto !important;
@@ -1472,12 +1474,12 @@ body::after {
     .tabs {
         display: flex !important;
         gap: 0 !important;
-        margin: 0 0 clamp(0.75rem, 3vh, 1.25rem) !important;
+        margin: 0 0 clamp(0.5rem, 2.5vh, 1rem) !important;
         padding: 5px !important;
         border-radius: 16px !important;
-        background: #f1f5f9 !important;
-        border: 1px solid #e2e8f0 !important;
-        box-shadow: none !important;
+        background: rgba(241, 245, 249, 0.75) !important;
+        border: 1px solid rgba(226, 232, 240, 0.8) !important;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.02) !important;
     }
 
     .tab {
@@ -1504,9 +1506,9 @@ body::after {
     }
 
     .tab.active {
-        background: linear-gradient(135deg, #3b5bdb, #2563eb) !important;
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
         color: #fff !important;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.30) !important;
+        box-shadow: 0 8px 16px rgba(37, 99, 235, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
         border-radius: 12px !important;
     }
 
@@ -1516,7 +1518,7 @@ body::after {
 
     /* 9. FORM */
     .form-group {
-        margin-bottom: 1rem !important;
+        margin-bottom: 0.8rem !important;
         display: flex !important;
         flex-direction: column !important;
     }
@@ -1534,17 +1536,18 @@ body::after {
         display: flex !important;
         align-items: center !important;
         border-radius: 10px !important;
-        border: 1.5px solid #e2e8f0 !important;
-        background: #f8faff !important;
-        padding: 0.75rem 1rem !important;
+        border: 1px solid rgba(226, 232, 240, 0.9) !important;
+        background: rgba(248, 250, 255, 0.85) !important;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.01) !important;
+        padding: 0.65rem 1rem !important;
         gap: 0.625rem !important;
         width: 100% !important;
     }
 
     .input-box:focus-within {
-        border-color: #2563eb !important;
+        border-color: #3b82f6 !important;
         background: #fff !important;
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10) !important;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12), 0 4px 12px rgba(0,0,0,0.03) !important;
     }
 
     .input-box:focus-within .mob-icon {
@@ -1636,14 +1639,14 @@ body::after {
     /* 13. SIGN IN BUTTON */
     .signin-btn {
         width: 100% !important;
-        padding: 0.85rem !important;
+        padding: 0.75rem !important;
         border-radius: 12px !important;
         font-size: 1rem !important;
         font-weight: 700 !important;
-        background: linear-gradient(135deg, #2855d8, #1a3cb5) !important;
+        background: linear-gradient(135deg, #2563eb, #1e3a8a) !important;
         color: #fff !important;
         border: none !important;
-        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.30) !important;
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
         cursor: pointer !important;
         display: flex !important;
         align-items: center !important;
@@ -1752,6 +1755,15 @@ body::after {
         position: relative !important;
         z-index: 3 !important;
     }
+    
+    .playstore-badge {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+    }
+    .appstore-badge {
+        background: linear-gradient(135deg, #1e293b, #0f172a) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    }
 
     .footer-text {
         position: relative !important;
@@ -1768,12 +1780,12 @@ body::after {
         left: auto !important;
         right: auto !important;
         width: 100% !important;
-        min-height: 11.25rem !important;
+        min-height: 14rem !important;
         background: transparent !important;
         border-radius: 0 !important;
         overflow: hidden !important;
         pointer-events: none !important;
-        margin-top: -11.25rem !important;
+        margin-top: -14rem !important;
         /* pull up to overlap footer visually */
     }
 
@@ -1784,7 +1796,7 @@ body::after {
         left: -1px !important;
         width: calc(100% + 2px) !important;
         height: 100% !important;
-        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 220' preserveAspectRatio='none'%3E%3Cpath d='M0,40 Q195,120 390,60 L390,220 L0,220 Z' fill='%2360a5fa' opacity='0.4'/%3E%3C/svg%3E") no-repeat bottom !important;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 220' preserveAspectRatio='none'%3E%3Cpath d='M0,20 C120,105 270,80 390,30 L390,220 L0,220 Z' fill='%2360a5fa' opacity='0.35'/%3E%3C/svg%3E") no-repeat bottom !important;
         background-size: 100% 100% !important;
     }
 
@@ -1795,7 +1807,7 @@ body::after {
         left: -1px !important;
         width: calc(100% + 2px) !important;
         height: 100% !important;
-        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 220' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='gf' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231d4ed8'/%3E%3Cstop offset='100%25' stop-color='%232563eb'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,70 Q195,110 390,30 L390,220 L0,220 Z' fill='url(%23gf)'/%3E%3C/svg%3E") no-repeat bottom !important;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 220' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='gf' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%233b82f6'/%3E%3Cstop offset='100%25' stop-color='%231e3a8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,35 C130,95 250,100 390,55 L390,220 L0,220 Z' fill='url(%23gf)'/%3E%3C/svg%3E") no-repeat bottom !important;
         background-size: 100% 100% !important;
     }
 
