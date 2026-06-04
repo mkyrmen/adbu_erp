@@ -1364,23 +1364,27 @@ body::after {
         display: none !important;
     }
 
-    /* 2. Page wrapper — fits content exactly */
+    /* 2. Page wrapper — flex column, fills viewport to allow footer to grow */
     .page-wrapper {
-        height: auto !important;
-        min-height: unset !important;
-        overflow: visible !important;
         display: flex !important;
         flex-direction: column !important;
+        min-height: 100dvh !important;
+        height: auto !important;
+        overflow-x: hidden !important;
+        overflow-y: hidden !important; /* lock scroll, content shouldn't exceed viewport */
+        position: relative !important;
     }
 
-    /* 3. MAIN WRAPPER — NO flex-grow so it doesn't bloat the background photo area */
+    /* 3. MAIN WRAPPER — NO flex-grow */
     .main-wrapper {
+        order: 0 !important;
         flex: 0 0 auto !important;
         display: flex !important;
         flex-direction: column !important;
         padding: 0 !important;
         align-items: stretch !important;
         justify-content: flex-start !important;
+        z-index: 3 !important;
     }
 
     /* 4. CONTAINER — transparent single-column shell */
@@ -1764,23 +1768,25 @@ body::after {
         display: none !important;
     }
 
-    /* 16. FOOTER — solid blue background, zero gap above, flush with wave */
+    /* 16. FOOTER — solid blue background, grows to fill bottom */
     .footer {
+        order: 2 !important;
+        flex: 1 0 auto !important; /* Grow to fill screen */
         position: relative !important;
-        z-index: 3 !important;
+        z-index: 2 !important;
         bottom: auto !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        justify-content: center !important;
+        justify-content: flex-start !important;
         gap: 0 !important;
-        padding: 1.25rem 1rem 1rem !important;
+        padding: 0 1rem 1rem !important; /* padding top is 0 because it overlaps wave */
         color: rgba(255, 255, 255, 0.9) !important;
         font-size: clamp(0.7rem, 1.5vw, 0.875rem) !important;
         text-align: center !important;
         line-height: 1.6 !important;
-        background: linear-gradient(135deg, #1d4ed8, #1e3a8a) !important;
-        margin-top: -1px !important;
+        background: #1e3a8a !important; /* Solid color matches wave bottom */
+        margin-top: -6rem !important; /* Overlap the flat part of the wave */
         margin-bottom: 0 !important;
         width: 100% !important;
     }
@@ -1789,8 +1795,6 @@ body::after {
     .footer,
     .app-buttons,
     [class*="footer"] {
-        position: relative !important;
-        bottom: auto !important;
         margin-bottom: 0 !important;
         padding-bottom: 1rem !important;
     }
@@ -1823,19 +1827,22 @@ body::after {
 
     /* 17. MOBILE FOOTER WAVE — flush directly against card bottom */
     .mobile-footer-bg {
+        order: 1 !important;
         display: block !important;
         position: relative !important;
-        z-index: 0 !important;
+        z-index: 1 !important;
         bottom: auto !important;
         left: auto !important;
         right: auto !important;
         width: 100% !important;
+        height: 14rem !important;
         min-height: 14rem !important;
         background: transparent !important;
         border-radius: 0 !important;
         overflow: hidden !important;
         pointer-events: none !important;
-        margin-top: -14rem !important;
+        margin-top: -1rem !important;
+        margin-bottom: 0 !important;
     }
 
     .mobile-footer-bg::before {
@@ -1856,13 +1863,13 @@ body::after {
         left: -1px !important;
         width: calc(100% + 2px) !important;
         height: 100% !important;
-        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 220' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='gf' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%233b82f6'/%3E%3Cstop offset='100%25' stop-color='%231e3a8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,35 C130,95 250,100 390,55 L390,220 L0,220 Z' fill='url(%23gf)'/%3E%3C/svg%3E") no-repeat bottom !important;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 220' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='gf' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%233b82f6'/%3E%3Cstop offset='100%25' stop-color='%231e3a8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,35 C130,95 250,100 390,55 L390,220 L0,220 Z' fill='url(%23gf)'/%3E%3C/svg%3E") no-repeat bottom !important;
         background-size: 100% 100% !important;
     }
 
     .mobile-footer-bg .left-dots {
         position: absolute !important;
-        bottom: 0 !important;
+        bottom: 6rem !important; /* adjusted due to footer overlap */
         left: 0 !important;
         width: 90px !important;
         height: 100px !important;
@@ -1872,7 +1879,7 @@ body::after {
 
     .mobile-footer-bg .right-dots {
         position: absolute !important;
-        bottom: 0 !important;
+        bottom: 6rem !important; /* adjusted due to footer overlap */
         right: 0 !important;
         width: 90px !important;
         height: 100px !important;
