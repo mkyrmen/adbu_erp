@@ -1,0 +1,130 @@
+.otp-header-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto;
+      background: #eff6ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2563eb;
+    }
+    .otp-header-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+    .otp-inputs {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 24px 0;
+    }
+    .otp-input {
+      width: 48px;
+      height: 56px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+      color: #1e293b;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .otp-input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+    .timer {
+      text-align: center;
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .timer.urgent {
+      color: #ef4444;
+    }
+    .resend-link {
+      font-size: 14px;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .resend-link.disabled {
+      color: #94a3b8;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+    .otp-heading {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a237e;
+    }
+
+    .otp-sub {
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+
+    .otp-mobile-header {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .otp-mobile-header {
+        display: block;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .otp-mobile-header img {
+        width: 80px;
+        margin: 0 auto 12px;
+        display: block;
+      }
+      .otp-mobile-header .mh-adbu {
+        font-size: 28px;
+        font-weight: 900;
+        color: #1a237e;
+        line-height: 1.1;
+      }
+      .otp-mobile-header .mh-cc {
+        font-size: 24px;
+        font-weight: 800;
+        color: #2563eb;
+        line-height: 1.2;
+        margin-bottom: 4px;
+      }
+      .otp-mobile-header .mh-sub {
+        font-size: 13px;
+        color: #64748b;
+        line-height: 1.5;
+        margin-bottom: 24px;
+      }
+
+      .otp-heading {
+        font-size: 20px;
+      }
+      .otp-sub {
+        font-size: 13px;
+      }
+      .otp-inputs {
+        gap: 8px;
+      }
+      .otp-input {
+        width: 42px;
+        height: 50px;
+        font-size: 20px;
+      }
+      #otpCard {
+        padding-bottom: 24px !important;
+      }
+      body::before {
+        background: rgba(219, 230, 245, 0.71);
+      }
+    }

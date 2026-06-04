@@ -1,0 +1,1876 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Inter', sans-serif;
+    /* FIXED: min-height instead of height, removed overflow:hidden */
+    min-height: 100%;
+    background-image: url('background.jpg');
+    /* FIXED: background-attachment:fixed keeps bg full-viewport at any zoom */
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #eef2ff;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(219, 230, 245, 0.63);
+    z-index: -3;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.08), transparent 30%);
+    z-index: -2;
+}
+
+.wave {
+    position: fixed;
+    bottom: -100px;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.10), rgba(37, 99, 235, 0.40));
+    border-radius: 50% 50% 0 0;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    position: relative;
+    z-index: 0;
+}
+
+.main-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(0.5rem, 2vh, 1.5rem) clamp(0.5rem, 2vw, 1.5rem);
+    min-height: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================================
+   CONTAINER
+   FIXED: removed fixed height/max-height,
+   use min-height so it grows with content
+========================================= */
+
+.container {
+    width: min(100%, 1260px);
+    /* FIXED: no fixed height — content drives the size */
+    min-height: min(82vh, 756px);
+    background: rgba(255, 255, 255, 0.20);
+    backdrop-filter: blur(16px);
+    border-radius: 28px;
+    display: flex;
+    /* FIXED: allow panels to wrap at mid zoom levels */
+    flex-wrap: wrap;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* ── Left Panel ── */
+
+/* FIXED: flex:1 1 360px instead of width:50%
+   so panel shrinks/grows proportionally */
+.left-panel {
+    flex: 1 1 360px;
+    min-width: 0;
+    padding: 32px 36px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.branding {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.branding img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.branding h3 {
+    font-size: 15px;
+    color: #102a72;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+}
+
+.branding p {
+    color: #5a6a9a;
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 2px;
+}
+
+.hero {
+    margin-top: 36px;
+}
+
+.hero small {
+    letter-spacing: 5px;
+    color: #5a6fa8;
+    font-weight: 600;
+    font-size: clamp(0.6rem, 1.2vw, 0.75rem);
+}
+
+.hero h1 {
+    margin-top: 8px;
+    font-size: clamp(1.4rem, 2.5vw, 3rem);
+    line-height: 0.95;
+    color: #0f1d4a;
+    font-weight: 800;
+}
+
+.hero h1 span {
+    color: #2563eb;
+    display: block;
+    margin-top: 6px;
+    font-size: clamp(1rem, 2vw, 2rem);
+}
+
+.hero>p {
+    margin-top: 16px;
+    color: #5a6a9a;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    line-height: 1.55;
+    max-width: 360px;
+}
+
+.features {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+}
+
+.feature-icon svg {
+    width: 22px;
+    height: 22px;
+    color: #2563eb;
+}
+
+.feature-text h4 {
+    color: #132b78;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.feature-text p {
+    color: #6b7a9e;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.download {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.download-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(37, 99, 235, 0.10);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.download-icon svg {
+    width: 18px;
+    height: 18px;
+    color: #2563eb;
+}
+
+.download-text h4 {
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.download-text p {
+    color: #6b7a9e;
+    font-size: 11px;
+    margin-top: 1px;
+}
+
+/* ── Right Panel ── */
+
+/* FIXED: flex:1 1 360px mirrors left panel */
+.right-panel {
+    flex: 1 1 360px;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 460px;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    border-radius: 24px;
+    padding: 2rem clamp(1rem, 4vw, 1.875rem);
+    box-shadow: 0 8px 28px rgba(37, 99, 235, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    position: relative;
+    z-index: 1;
+    overflow-y: auto;
+}
+
+.login-card h2 {
+    font-size: 26px;
+    color: #0f1d4a;
+    text-align: center;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.login-card .sub {
+    text-align: center;
+    color: #6b7a9e;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: rgba(240, 243, 255, 0.95);
+    border-radius: 16px;
+    padding: 6px;
+    gap: 6px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(215, 223, 255, 0.8);
+}
+
+.tab {
+    height: 58px;
+    border-radius: 12px;
+    border: none;
+    background: transparent;
+    font-size: 12px;
+    font-weight: 600;
+    color: #6b7696;
+    cursor: pointer;
+    transition: 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.tab i {
+    font-size: 18px;
+    display: block;
+}
+
+.tab svg {
+    width: 20px;
+    height: 20px;
+}
+
+.tab.active {
+    background: linear-gradient(135deg, #3568ff, #1d47dd);
+    color: white;
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.30);
+}
+
+.tab.active svg,
+.tab.active i {
+    color: white;
+}
+
+.tab:not(.active) i {
+    color: #6b7696;
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #17275f;
+}
+
+.input-box {
+    height: 48px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #dce4ff;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    gap: 10px;
+    transition: 0.25s ease;
+}
+
+.input-box:focus-within {
+    border-color: #3568ff;
+    box-shadow: 0 0 0 3px rgba(53, 104, 255, 0.10);
+}
+
+.input-box svg {
+    width: 18px;
+    height: 18px;
+    color: #9aa4c4;
+    min-width: 18px;
+}
+
+.input-box input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    font-size: 13px;
+    color: #132b78;
+    outline: none;
+    font-family: inherit;
+}
+
+.input-box input::placeholder {
+    color: #9aa4c4;
+}
+
+.eye-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+}
+
+.forgot {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+    margin-top: 6px;
+}
+
+.forgot a {
+    text-decoration: none;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.signin-btn {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #3568ff, #1740d6);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: inherit;
+}
+
+.signin-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.32);
+}
+
+.signin-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+    color: #7f8ab0;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #dce4ff;
+}
+
+.google-btn {
+    width: 100%;
+    height: 46px;
+    border-radius: 14px;
+    border: 1px solid #dce4ff;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 13px;
+    color: #344472;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: inherit;
+    transition: 0.2s ease;
+}
+
+.google-btn:hover {
+    background: rgba(245, 248, 255, 1);
+    border-color: #b8c4f0;
+}
+
+.google-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.secure-box {
+    margin-top: 16px;
+    background: rgba(240, 243, 255, 0.9);
+    border: 1px solid #dce4ff;
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.secure-left {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.shield {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 12px;
+    background: rgba(53, 104, 255, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shield svg {
+    width: 20px;
+    height: 20px;
+    color: #2563eb;
+}
+
+.secure-text h4 {
+    color: #17275f;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.secure-text p {
+    color: #6b7a9e;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.lock-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 10px;
+    background: rgba(37, 99, 235, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lock-icon svg {
+    width: 18px;
+    height: 18px;
+    color: #f59e0b;
+}
+
+.footer {
+    text-align: center;
+    padding: 0px;
+    color: #000000;
+    font-size: 12px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.mobile-header {
+    display: none;
+}
+
+.mobile-download {
+    display: none;
+}
+
+.mobile-footer-bg {
+    display: none;
+}
+
+.mob-badges {
+    display: none;
+}
+
+/* =========================================
+   RESPONSIVE — MOBILE-FIRST
+   Base: < 640px (mobile, no media query needed — default styles above)
+   md:  >= 768px  (tablet)
+   lg:  >= 1024px (laptop)
+   xl:  >= 1280px (desktop)
+========================================= */
+
+/* ── Tablet (768px+) ── */
+@media (min-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .form-card,
+    .login-card {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .container {
+        width: 94%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .left-panel {
+        padding: 1.5rem;
+    }
+
+    .right-panel {
+        padding: 1.5rem;
+    }
+}
+
+/* ── Laptop (1024px+) ── */
+@media (min-width: 1024px) {
+    .page-wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .container {
+        width: min(100%, 1260px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        min-height: min(82vh, 756px);
+    }
+
+    .left-panel {
+        padding: 2rem 2.25rem 1.5rem;
+        justify-content: space-between;
+    }
+
+    .right-panel {
+        padding: 1.5rem;
+        justify-content: center;
+    }
+
+    .login-card {
+        max-width: 460px;
+    }
+
+    .hero {
+        text-align: left;
+        flex-direction: column;
+    }
+}
+
+/* ── Desktop (1280px+) ── */
+@media (min-width: 1280px) {
+    .container {
+        width: min(100%, 1280px);
+    }
+
+    .left-panel {
+        padding: 2rem 2.25rem 1.5rem;
+    }
+}
+
+/* ── Tablet-portrait gap (769px – 819px): single-column, card centred ── */
+@media (min-width: 769px) and (max-width: 819px) {
+
+    html,
+    body {
+        overflow: auto;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+        background: transparent;
+        backdrop-filter: none;
+        box-shadow: none;
+        border: none;
+        min-height: unset;
+    }
+
+    .left-panel {
+        display: none;
+    }
+
+    .right-panel {
+        width: 100%;
+        padding: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .login-card {
+        background: #ffffff;
+        max-width: 480px;
+        width: 85%;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(37, 99, 235, 0.1);
+    }
+
+    .wave {
+        display: none;
+    }
+}
+
+/* Mobile styles (max-width: 768px) are fully handled
+   in the merged block at the bottom of this file. */
+
+/* NOTE: Mobile-specific overrides use !important in the block below
+   to guarantee cascade order is respected. */
+
+/* =========================================
+   CAPTCHA STYLES
+========================================= */
+
+.captcha-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.captcha-box {
+    min-width: 170px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(239, 246, 255, 0.9);
+    border: 1px dashed #3568ff;
+    border-radius: 14px;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    color: #1d47dd;
+    user-select: none;
+    font-family: 'Inter', sans-serif;
+}
+
+.captcha-refresh-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #3568ff, #1740d6);
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+    flex-shrink: 0;
+}
+
+.captcha-refresh-btn:hover {
+    transform: rotate(180deg);
+}
+
+/* ── Compact CAPTCHA ── */
+
+.captcha-inline-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.captcha-inline-box {
+    min-width: 120px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(239, 246, 255, 0.9);
+    border: 1px dashed #3568ff;
+    border-radius: 12px;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #1d47dd;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.captcha-input-wrapper {
+    flex: 1;
+}
+
+.captcha-input-wrapper input {
+    width: 100%;
+    height: 48px;
+    border: 1px solid #dce4ff;
+    border-radius: 12px;
+    padding: 0 14px;
+    font-size: 13px;
+    outline: none;
+    color: #132b78;
+    background: rgba(255, 255, 255, 0.9);
+    transition: 0.25s ease;
+}
+
+.captcha-input-wrapper input:focus {
+    border-color: #3568ff;
+    box-shadow: 0 0 0 3px rgba(53, 104, 255, 0.1);
+}
+
+.captcha-refresh-btn {
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #3568ff, #1740d6);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: 0.25s ease;
+}
+
+@media (max-width: 480px) {
+    .captcha-inline-wrapper {
+        gap: 6px;
+    }
+
+    .captcha-inline-box {
+        min-width: 95px;
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+
+    .captcha-refresh-btn {
+        width: 42px;
+        height: 42px;
+    }
+
+    .captcha-input-wrapper input {
+        height: 42px;
+        font-size: 12px;
+    }
+}
+
+/* =========================================
+   APP DOWNLOAD STRIP
+========================================= */
+
+.app-download-strip {
+    margin-top: 20px;
+}
+
+.app-download-inner {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.app-download-badges {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.store-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: 0.22s ease;
+    border: 1px solid transparent;
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
+}
+
+.playstore-badge {
+    background: #ffffff;
+    border-color: #dce4ff;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+}
+
+.playstore-badge:hover {
+    background: #f0f5ff;
+    border-color: #3568ff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.15);
+}
+
+.appstore-badge {
+    background: #0f1d4a;
+    border-color: #0f1d4a;
+    box-shadow: 0 2px 8px rgba(15, 29, 74, 0.18);
+}
+
+.appstore-badge:hover {
+    background: #1a2f6b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(15, 29, 74, 0.28);
+}
+
+.store-badge svg.kOqhQd {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.appstore-badge svg {
+    width: 20px;
+    height: 44px;
+    flex-shrink: 0;
+    fill: #ffffff;
+}
+
+.store-badge-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+.playstore-badge .store-badge-line1 {
+    font-size: 9px;
+    font-weight: 600;
+    color: #6b7a9e;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.playstore-badge .store-badge-line2 {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0f1d4a;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.appstore-badge .store-badge-line1 {
+    font-size: 9px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.65);
+    letter-spacing: 0.5px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.appstore-badge .store-badge-line2 {
+    font-size: 15px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.appstore-badge .globalnav-image-regular {
+    display: flex;
+    align-items: center;
+}
+
+.appstore-badge .globalnav-image-regular svg path {
+    fill: #ffffff;
+}
+
+@media (max-width: 480px) {
+    .app-download-badges {
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    .store-badge {
+        padding: 8px 10px;
+        justify-content: center;
+    }
+
+    .playstore-badge .store-badge-line2,
+    .appstore-badge .store-badge-line2 {
+        font-size: 13px;
+    }
+
+    .playstore-badge .store-badge-line1,
+    .appstore-badge .store-badge-line1 {
+        font-size: 8px;
+    }
+}
+
+/* =========================================
+   GOOGLE RECAPTCHA
+========================================= */
+
+.g-recaptcha {
+    margin-top: 4px;
+    transform-origin: center;
+}
+
+@media (max-width: 380px) {
+    .g-recaptcha {
+        transform: scale(0.88);
+        transform-origin: center;
+    }
+}
+
+/* =========================================
+   FORGOT PASSWORD MODAL
+========================================= */
+
+.fp-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 60, 0.55);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.fp-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.fp-modal {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 36px 32px;
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15);
+    transform: translateY(20px);
+    transition: transform 0.25s ease;
+    /* FIXED: prevents modal overflow at low zoom / small screens */
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.fp-overlay.active .fp-modal {
+    transform: translateY(0);
+}
+
+.fp-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #f1f5ff;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #6b7a9e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease;
+}
+
+.fp-close:hover {
+    background: #e0e7ff;
+    color: #1e3a8a;
+}
+
+.fp-icon {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.fp-modal h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f1d4a;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.fp-sub {
+    font-size: 13px;
+    color: #6b7a9e;
+    text-align: center;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.fp-form-group {
+    margin-bottom: 16px;
+}
+
+.fp-form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #17275f;
+    margin-bottom: 8px;
+}
+
+.fp-form-group input,
+.fp-form-group select {
+    width: 100%;
+    height: 48px;
+    border: 1px solid #dce4ff;
+    border-radius: 12px;
+    padding: 0 14px;
+    font-size: 13px;
+    color: #132b78;
+    background: rgba(255, 255, 255, 0.9);
+    outline: none;
+    font-family: inherit;
+    transition: 0.2s ease;
+    appearance: none;
+}
+
+.fp-form-group input:focus,
+.fp-form-group select:focus {
+    border-color: #3568ff;
+    box-shadow: 0 0 0 3px rgba(53, 104, 255, 0.10);
+}
+
+.fp-pw-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.fp-pw-wrap input {
+    padding-right: 44px;
+}
+
+.fp-eye {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    color: #6b7a9e;
+}
+
+.fp-btn {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #3568ff, #1740d6);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: 8px;
+    transition: 0.22s ease;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.fp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.32);
+}
+
+.fp-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.fp-otp-boxes {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.fp-otp-input {
+    width: 48px;
+    height: 56px;
+    border: 2px solid #dce4ff;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f1d4a;
+    outline: none;
+    font-family: inherit;
+    transition: 0.2s ease;
+    background: #f8faff;
+}
+
+.fp-otp-input:focus {
+    border-color: #3568ff;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(53, 104, 255, 0.10);
+}
+
+.fp-otp-input.filled {
+    border-color: #3568ff;
+    background: #eef2ff;
+}
+
+.fp-timer {
+    text-align: center;
+    font-size: 12px;
+    color: #6b7a9e;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.fp-timer span {
+    font-weight: 700;
+    color: #3568ff;
+}
+
+.fp-timer.expired span {
+    color: #dc2626;
+}
+
+.fp-resend {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    color: #3568ff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+    font-family: inherit;
+    padding: 4px;
+}
+
+.fp-resend:hover {
+    text-decoration: underline;
+}
+
+.fp-message {
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.fp-message.error {
+    background: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #fca5a5;
+}
+
+.fp-message.success {
+    background: #dcfce7;
+    color: #16a34a;
+    border: 1px solid #86efac;
+}
+
+.fp-step.hidden {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .fp-modal {
+        padding: 28px 20px;
+    }
+
+    .fp-otp-input {
+        width: 42px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .fp-otp-boxes {
+        gap: 8px;
+    }
+}
+
+/* =========================================
+   MOBILE — max-width: 768px
+   STRATEGY: Pure normal document flow.
+   HTML order: mobile-header → login-card → footer → mobile-footer-bg → .wave
+   No position:absolute/fixed on any of these elements on mobile.
+========================================= */
+
+.mob-icon {
+    display: none;
+}
+
+.mob-extra {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    /* 1. BACKGROUND */
+    body::after {
+        display: none !important;
+    }
+
+    body::before {
+        background: rgba(210, 228, 255, 0.72) !important;
+    }
+
+    body {
+        background-attachment: scroll !important;
+        background-position: center top !important;
+        background-size: cover !important;
+    }
+
+    .page-wrapper,
+    .bg-section,
+    [class*="hero"],
+    [class*="background"],
+    [class*="banner"] {
+        background-position: center top !important;
+        background-size: cover !important;
+    }
+
+    /* 2. PAGE WRAPPER — simple flex column, full scroll, no fixed height */
+    .page-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        min-height: 100vh !important;
+        height: auto !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        position: relative !important;
+        gap: 0 !important;
+    }
+
+    /* 3. MAIN WRAPPER — flex:1 so it fills space above footer */
+    .main-wrapper {
+        flex: 1 0 auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+    }
+
+    /* 4. CONTAINER — transparent single-column shell */
+    .container {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+    }
+
+    /* 5. PANELS */
+    .left-panel {
+        display: none !important;
+    }
+
+    .right-panel {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        justify-content: flex-start !important;
+    }
+
+    /* 6. MOBILE HEADER — logo inline-left, text right */
+    .mobile-header {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.625rem !important;
+        padding: 1.2rem 1rem 0.5rem 1rem !important;
+        background: transparent !important;
+        position: relative !important;
+        z-index: 2 !important;
+    }
+
+    .mobile-header img {
+        width: 65px !important;
+        height: 65px !important;
+        max-width: 100% !important;
+        object-fit: contain !important;
+        border-radius: 50% !important;
+        flex-shrink: 0 !important;
+        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.22) !important;
+    }
+
+    .mobile-header .mh-text {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        text-align: left !important;
+    }
+
+    .mobile-header .mh-adbu {
+        font-size: 1.4rem !important;
+        font-weight: 900 !important;
+        color: #0d1b4b !important;
+        line-height: 1.1 !important;
+        letter-spacing: -0.5px !important;
+        margin: 0 !important;
+    }
+
+    .mobile-header .mh-cc {
+        font-size: 1.2rem !important;
+        font-weight: 800 !important;
+        background: linear-gradient(90deg, #5c6ef8, #3b4fd4) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+        line-height: 1.2 !important;
+        margin: 0 !important;
+    }
+
+    .mobile-header .mh-sub {
+        font-size: 0.78rem !important;
+        color: #7b8db0 !important;
+        font-weight: 400 !important;
+        line-height: 1.3 !important;
+        margin: 2px 0 0 0 !important;
+    }
+
+    /* 7. LOGIN CARD — normal flow, sits above wave by DOM order */
+    .login-card {
+        margin-bottom: 0.8rem !important;
+        position: relative !important;
+        z-index: 2 !important;
+        width: 93% !important;
+        max-width: 93% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: 1.5rem !important;
+        padding: clamp(1rem, 5vw, 1.25rem) !important;
+        padding-bottom: 1.5rem !important;
+        background: #ffffff !important;
+        border-radius: 20px !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18) !important;
+        border: none !important;
+        overflow: visible !important;
+        transform: none !important;
+        top: auto !important;
+        left: auto !important;
+    }
+
+    .login-card h2,
+    .login-card .sub,
+    .google-btn,
+    .divider {
+        display: none !important;
+    }
+
+    /* 8. TABS */
+    .tabs {
+        display: flex !important;
+        gap: 0 !important;
+        margin: 0 0 clamp(0.75rem, 3vh, 1.25rem) !important;
+        padding: 5px !important;
+        border-radius: 16px !important;
+        background: #f1f5f9 !important;
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: none !important;
+    }
+
+    .tab {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 4px !important;
+        min-height: clamp(3.375rem, 12vw, 4rem) !important;
+        border-radius: 12px !important;
+        font-size: clamp(0.7rem, 3vw, 0.875rem) !important;
+        font-weight: 600 !important;
+        color: #64748b !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        cursor: pointer !important;
+    }
+
+    .tab i {
+        font-size: 1.25rem !important;
+        color: #94a3b8 !important;
+    }
+
+    .tab.active {
+        background: linear-gradient(135deg, #3b5bdb, #2563eb) !important;
+        color: #fff !important;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.30) !important;
+        border-radius: 12px !important;
+    }
+
+    .tab.active i {
+        color: #fff !important;
+    }
+
+    /* 9. FORM */
+    .form-group {
+        margin-bottom: 1rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .form-group label {
+        font-size: clamp(0.8rem, 1.5vw, 1rem) !important;
+        font-weight: 700 !important;
+        color: #1e293b !important;
+        margin-bottom: 0.5rem !important;
+        display: block !important;
+    }
+
+    /* 10. INPUT BOXES */
+    .input-box {
+        display: flex !important;
+        align-items: center !important;
+        border-radius: 10px !important;
+        border: 1.5px solid #e2e8f0 !important;
+        background: #f8faff !important;
+        padding: 0.75rem 1rem !important;
+        gap: 0.625rem !important;
+        width: 100% !important;
+    }
+
+    .input-box:focus-within {
+        border-color: #2563eb !important;
+        background: #fff !important;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10) !important;
+    }
+
+    .input-box:focus-within .mob-icon {
+        color: #2563eb !important;
+    }
+
+    .input-box input {
+        flex: 1 !important;
+        border: none !important;
+        outline: none !important;
+        background: transparent !important;
+        font-size: 0.95rem !important;
+        color: #0f172a !important;
+        font-family: inherit !important;
+        width: 100% !important;
+    }
+
+    .input-box input::placeholder {
+        color: #94a3b8 !important;
+    }
+
+    .eye-btn {
+        background: none !important;
+        border: none !important;
+        color: #94a3b8 !important;
+        font-size: 1rem !important;
+        padding: 0 !important;
+        cursor: pointer !important;
+    }
+
+    .mob-icon {
+        display: inline-flex !important;
+        align-items: center !important;
+        color: #94a3b8 !important;
+        font-size: 0.9375rem !important;
+        flex-shrink: 0 !important;
+        width: 1.125rem !important;
+        transition: color 0.2s !important;
+    }
+
+    /* 11. FORGOT */
+    .forgot {
+        text-align: right !important;
+        margin: 0.125rem 0 1.125rem !important;
+        width: 100% !important;
+    }
+
+    .forgot a {
+        font-size: clamp(0.8rem, 1.5vw, 1rem) !important;
+        font-weight: 600 !important;
+        color: #2563eb !important;
+        text-decoration: none !important;
+    }
+
+    /* 12. RECAPTCHA */
+    .g-recaptcha {
+        transform: scale(0.93) !important;
+        transform-origin: center !important;
+        margin-bottom: 0.25rem !important;
+    }
+
+    /* reCAPTCHA container — no reserved space when empty */
+    .g-recaptcha,
+    .recaptcha-wrapper,
+    [class*="recaptcha"],
+    .g-recaptcha>div,
+    .rc-anchor {
+        min-height: unset !important;
+        height: auto !important;
+    }
+
+    /* If the recaptcha div is empty, collapse it completely */
+    .g-recaptcha:empty,
+    .recaptcha-wrapper:empty {
+        display: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Prevent any wrapper div around recaptcha from holding space */
+    .captcha-container,
+    .recaptcha-container,
+    [class*="captcha"] {
+        min-height: unset !important;
+        height: auto !important;
+        overflow: hidden !important;
+    }
+
+    /* 13. SIGN IN BUTTON */
+    .signin-btn {
+        width: 100% !important;
+        padding: 0.85rem !important;
+        border-radius: 12px !important;
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        background: linear-gradient(135deg, #2855d8, #1a3cb5) !important;
+        color: #fff !important;
+        border: none !important;
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.30) !important;
+        cursor: pointer !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
+    }
+
+    .signin-btn #std-icon {
+        display: inline !important;
+    }
+
+    /* 14. MOBILE EXTRAS */
+    .mob-extra {
+        display: block !important;
+        margin-top: 1rem !important;
+    }
+
+    .mob-or {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.75rem !important;
+        color: #94a3b8 !important;
+        font-size: clamp(0.75rem, 1.5vw, 0.875rem) !important;
+        margin: 0 0 0.875rem !important;
+    }
+
+    .mob-or::before,
+    .mob-or::after {
+        content: "" !important;
+        flex: 1 !important;
+        height: 1px !important;
+        background: #e2e8f0 !important;
+    }
+
+    .mob-sso-btn {
+        width: 100% !important;
+        min-height: 3.125rem !important;
+        background: #fff !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.625rem !important;
+        padding: 0 1rem !important;
+        font-size: clamp(0.8rem, 1.5vw, 1rem) !important;
+        font-weight: 600 !important;
+        color: #1e293b !important;
+        cursor: pointer !important;
+        font-family: inherit !important;
+    }
+
+    .mob-arrow {
+        margin-left: auto !important;
+        color: #94a3b8 !important;
+    }
+
+    .mob-security {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.375rem !important;
+        margin-top: 0.875rem !important;
+        font-size: clamp(0.7rem, 1.5vw, 0.8125rem) !important;
+        color: #94a3b8 !important;
+        text-align: center !important;
+        flex-wrap: wrap !important;
+    }
+
+    .mob-security a {
+        color: #2563eb !important;
+        font-weight: 600 !important;
+        text-decoration: none !important;
+    }
+
+    /* 15. APP DOWNLOAD STRIP inside card — hidden; badges shown in footer */
+    .app-download-strip {
+        display: none !important;
+    }
+
+    /* 16. FOOTER — normal flow, ABOVE .mobile-footer-bg and .wave in DOM */
+    .footer {
+        position: relative !important;
+        z-index: 3 !important;
+        bottom: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        padding: 0.5rem 1rem 0.8rem !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+        font-size: clamp(0.7rem, 1.5vw, 0.875rem) !important;
+        text-align: center !important;
+        line-height: 1.6 !important;
+        background: transparent !important;
+        margin-top: 0 !important;
+    }
+
+    .mob-badges {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+        flex-wrap: wrap !important;
+        position: relative !important;
+        z-index: 3 !important;
+    }
+
+    .footer-text {
+        position: relative !important;
+        z-index: 3 !important;
+        text-align: center !important;
+    }
+
+    /* 17. MOBILE FOOTER WAVE — normal flow AFTER footer, BEFORE .wave */
+    .mobile-footer-bg {
+        display: block !important;
+        position: relative !important;
+        z-index: 0 !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        width: 100% !important;
+        min-height: 11.25rem !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+        overflow: hidden !important;
+        pointer-events: none !important;
+        margin-top: -11.25rem !important;
+        /* pull up to overlap footer visually */
+    }
+
+    .mobile-footer-bg::before {
+        content: "" !important;
+        position: absolute !important;
+        bottom: 0 !important;
+        left: -1px !important;
+        width: calc(100% + 2px) !important;
+        height: 100% !important;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 220' preserveAspectRatio='none'%3E%3Cpath d='M0,40 Q195,120 390,60 L390,220 L0,220 Z' fill='%2360a5fa' opacity='0.4'/%3E%3C/svg%3E") no-repeat bottom !important;
+        background-size: 100% 100% !important;
+    }
+
+    .mobile-footer-bg::after {
+        content: "" !important;
+        position: absolute !important;
+        bottom: 0 !important;
+        left: -1px !important;
+        width: calc(100% + 2px) !important;
+        height: 100% !important;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 220' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='gf' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231d4ed8'/%3E%3Cstop offset='100%25' stop-color='%232563eb'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,70 Q195,110 390,30 L390,220 L0,220 Z' fill='url(%23gf)'/%3E%3C/svg%3E") no-repeat bottom !important;
+        background-size: 100% 100% !important;
+    }
+
+    .mobile-footer-bg .left-dots {
+        position: absolute !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 90px !important;
+        height: 100px !important;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 100'%3E%3Cellipse cx='18' cy='75' rx='14' ry='28' fill='rgba(255,255,255,0.10)' transform='rotate(-30 18 75)'/%3E%3Cellipse cx='38' cy='80' rx='12' ry='24' fill='rgba(255,255,255,0.08)' transform='rotate(10 38 80)'/%3E%3Cellipse cx='8' cy='90' rx='10' ry='20' fill='rgba(255,255,255,0.06)' transform='rotate(-50 8 90)'/%3E%3C/svg%3E") no-repeat bottom left !important;
+        background-size: contain !important;
+    }
+
+    .mobile-footer-bg .right-dots {
+        position: absolute !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        width: 90px !important;
+        height: 100px !important;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 100'%3E%3Cpolygon points='45,20 75,35 45,50 15,35' fill='rgba(255,255,255,0.12)'/%3E%3Crect x='38' y='48' width='14' height='18' fill='rgba(255,255,255,0.10)'/%3E%3Crect x='20' y='70' width='50' height='8' rx='2' fill='rgba(255,255,255,0.10)'/%3E%3Crect x='24' y='80' width='42' height='6' rx='2' fill='rgba(255,255,255,0.08)'/%3E%3Crect x='28' y='88' width='34' height='5' rx='2' fill='rgba(255,255,255,0.06)'/%3E%3C/svg%3E") no-repeat bottom right !important;
+        background-size: contain !important;
+    }
+
+    /* 18. DESKTOP WAVE — hide it on mobile (it's the last child of .page-wrapper) */
+    .wave {
+        display: none !important;
+    }
+
+}
+
+/* end @media (max-width: 768px) */
+
+/* =========================================
+   TABLET+ MOBILE HEADER OVERRIDE (min-width: 768px)
+   Logo: 80px, centred above text
+   Wave: back to fixed decorative background
+========================================= */
+@media (min-width: 768px) {
+    .mobile-header {
+        flex-direction: column !important;
+        text-align: center !important;
+        align-items: center !important;
+    }
+
+    .mobile-header img {
+        width: 80px !important;
+        height: 80px !important;
+        margin: 0 auto 0.5rem !important;
+    }
+
+    .mobile-header .mh-text {
+        text-align: center !important;
+        align-items: center !important;
+    }
+
+    .mobile-header .mh-adbu,
+    .mobile-header .mh-cc,
+    .mobile-header .mh-sub {
+        text-align: center !important;
+    }
+
+    /* Desktop wave: fixed decorative element */
+    .wave {
+        display: block !important;
+        position: fixed !important;
+        bottom: -100px !important;
+        z-index: -1 !important;
+    }
+
+    /* Hide mobile-only elements on tablet+ */
+    .mobile-footer-bg {
+        display: none !important;
+    }
+
+    .mob-badges {
+        display: none !important;
+    }
+}
