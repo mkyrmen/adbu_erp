@@ -1310,9 +1310,22 @@ body::after {
         background: rgba(210, 228, 255, 0.72) !important;
     }
 
+    /* 1. Hard stop — page ends at content, no extra scroll */
     html, body {
-        height: 100% !important;
+        height: auto !important;
+        min-height: unset !important;
         overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+
+    /* 5. Kill any pseudo-elements or after-content adding height */
+    .page-wrapper::after,
+    .page-wrapper::before,
+    body::after,
+    body::before {
+        display: none !important;
+        height: 0 !important;
+        content: none !important;
     }
 
     body {
@@ -1330,6 +1343,19 @@ body::after {
         background-size: cover !important;
     }
 
+    /* 3. Any background image div — must NOT extend beyond content */
+    .mobile-bg,
+    .bg-section,
+    .hero-bg,
+    [class*="background"],
+    [class*="hero"],
+    [class*="banner"] {
+        height: auto !important;
+        min-height: unset !important;
+        max-height: none !important;
+        position: relative !important;
+    }
+
     /* Kill any spacer or empty-space elements */
     .spacer,
     .gap-section,
@@ -1338,17 +1364,13 @@ body::after {
         display: none !important;
     }
 
-    /* 2. PAGE WRAPPER — tight flex column, uses 100dvh for real phone viewport */
+    /* 2. Page wrapper — fits content exactly */
     .page-wrapper {
+        height: auto !important;
+        min-height: unset !important;
+        overflow: visible !important;
         display: flex !important;
         flex-direction: column !important;
-        min-height: 100dvh !important;
-        min-height: 100vh !important; /* fallback */
-        height: auto !important;
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        position: relative !important;
-        gap: 0 !important;
     }
 
     /* 3. MAIN WRAPPER — NO flex-grow so it doesn't bloat the background photo area */
@@ -1752,14 +1774,25 @@ body::after {
         align-items: center !important;
         justify-content: center !important;
         gap: 0 !important;
-        padding: 1.25rem 1rem 1.5rem !important;
+        padding: 1.25rem 1rem 1rem !important;
         color: rgba(255, 255, 255, 0.9) !important;
         font-size: clamp(0.7rem, 1.5vw, 0.875rem) !important;
         text-align: center !important;
         line-height: 1.6 !important;
         background: linear-gradient(135deg, #1d4ed8, #1e3a8a) !important;
         margin-top: -1px !important;
+        margin-bottom: 0 !important;
         width: 100% !important;
+    }
+
+    /* 4. Footer is the last element — nothing renders after it */
+    .footer,
+    .app-buttons,
+    [class*="footer"] {
+        position: relative !important;
+        bottom: auto !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 1rem !important;
     }
 
     .mob-badges {
@@ -1850,6 +1883,16 @@ body::after {
     /* 18. DESKTOP WAVE — hide it on mobile (it's the last child of .page-wrapper) */
     .wave {
         display: none !important;
+    }
+
+    /* 6. Wave/decorative elements must not extend scroll */
+    .wave,
+    [class*="wave"] {
+        position: relative !important;
+        height: auto !important;
+        min-height: unset !important;
+        bottom: auto !important;
+        overflow: hidden !important;
     }
 
 }
