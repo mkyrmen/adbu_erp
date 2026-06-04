@@ -1310,9 +1310,14 @@ body::after {
         background: rgba(210, 228, 255, 0.72) !important;
     }
 
+    html, body {
+        height: 100% !important;
+        overflow-x: hidden !important;
+    }
+
     body {
         background-attachment: scroll !important;
-        background-position: center top !important;
+        background-position: center 15% !important;
         background-size: cover !important;
     }
 
@@ -1321,15 +1326,24 @@ body::after {
     [class*="hero"],
     [class*="background"],
     [class*="banner"] {
-        background-position: center top !important;
+        background-position: center 15% !important;
         background-size: cover !important;
     }
 
-    /* 2. PAGE WRAPPER — simple flex column, full scroll, no fixed height */
+    /* Kill any spacer or empty-space elements */
+    .spacer,
+    .gap-section,
+    [class*="spacer"],
+    [class*="empty-space"] {
+        display: none !important;
+    }
+
+    /* 2. PAGE WRAPPER — tight flex column, uses 100dvh for real phone viewport */
     .page-wrapper {
         display: flex !important;
         flex-direction: column !important;
-        min-height: 100vh !important;
+        min-height: 100dvh !important;
+        min-height: 100vh !important; /* fallback */
         height: auto !important;
         overflow-y: auto !important;
         overflow-x: hidden !important;
@@ -1337,9 +1351,9 @@ body::after {
         gap: 0 !important;
     }
 
-    /* 3. MAIN WRAPPER — flex:1 so it fills space above footer */
+    /* 3. MAIN WRAPPER — NO flex-grow so it doesn't bloat the background photo area */
     .main-wrapper {
-        flex: 1 0 auto !important;
+        flex: 0 0 auto !important;
         display: flex !important;
         flex-direction: column !important;
         padding: 0 !important;
@@ -1381,14 +1395,15 @@ body::after {
         justify-content: flex-start !important;
     }
 
-    /* 6. MOBILE HEADER — logo inline-left, text right */
+    /* 6. MOBILE HEADER — compact, tight padding */
     .mobile-header {
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: center !important;
         gap: 0.625rem !important;
-        padding: 1.2rem 1rem 0.5rem 1rem !important;
+        padding: 0.75rem 1rem 0.4rem 1rem !important;
+        margin-bottom: 0 !important;
         background: transparent !important;
         position: relative !important;
         z-index: 2 !important;
@@ -1439,24 +1454,25 @@ body::after {
         margin: 2px 0 0 0 !important;
     }
 
-    /* 7. LOGIN CARD — normal flow, sits above wave by DOM order */
+    /* 7. LOGIN CARD — tight, no dead space, flush into wave */
     .login-card {
-        margin-bottom: 0.8rem !important;
+        margin-bottom: 0 !important;
         position: relative !important;
         z-index: 2 !important;
-        width: 93% !important;
-        max-width: 93% !important;
+        width: 94% !important;
+        max-width: 94% !important;
         margin-left: auto !important;
         margin-right: auto !important;
-        margin-top: 1.5rem !important;
+        margin-top: 0.75rem !important;
         padding: clamp(0.875rem, 5vw, 1.125rem) !important;
-        padding-bottom: 1.25rem !important;
+        padding-bottom: 1.5rem !important;
         background: rgba(255, 255, 255, 0.96) !important;
         backdrop-filter: blur(24px) !important;
         -webkit-backdrop-filter: blur(24px) !important;
-        border-radius: 24px !important;
-        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12), 0 8px 16px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+        border-radius: 24px 24px 0 0 !important;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08), 0 20px 40px rgba(15, 23, 42, 0.10), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
         border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        border-bottom: none !important;
         overflow: visible !important;
         transform: none !important;
         top: auto !important;
@@ -1726,7 +1742,7 @@ body::after {
         display: none !important;
     }
 
-    /* 16. FOOTER — normal flow, ABOVE .mobile-footer-bg and .wave in DOM */
+    /* 16. FOOTER — solid blue background, zero gap above, flush with wave */
     .footer {
         position: relative !important;
         z-index: 3 !important;
@@ -1736,13 +1752,14 @@ body::after {
         align-items: center !important;
         justify-content: center !important;
         gap: 0 !important;
-        padding: 0.5rem 1rem 0.8rem !important;
-        color: rgba(255, 255, 255, 0.85) !important;
+        padding: 1.25rem 1rem 1.5rem !important;
+        color: rgba(255, 255, 255, 0.9) !important;
         font-size: clamp(0.7rem, 1.5vw, 0.875rem) !important;
         text-align: center !important;
         line-height: 1.6 !important;
-        background: transparent !important;
-        margin-top: 0 !important;
+        background: linear-gradient(135deg, #1d4ed8, #1e3a8a) !important;
+        margin-top: -1px !important;
+        width: 100% !important;
     }
 
     .mob-badges {
@@ -1771,7 +1788,7 @@ body::after {
         text-align: center !important;
     }
 
-    /* 17. MOBILE FOOTER WAVE — normal flow AFTER footer, BEFORE .wave */
+    /* 17. MOBILE FOOTER WAVE — flush directly against card bottom */
     .mobile-footer-bg {
         display: block !important;
         position: relative !important;
@@ -1786,7 +1803,6 @@ body::after {
         overflow: hidden !important;
         pointer-events: none !important;
         margin-top: -14rem !important;
-        /* pull up to overlap footer visually */
     }
 
     .mobile-footer-bg::before {
