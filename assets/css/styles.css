@@ -1378,7 +1378,7 @@ body::after {
     /* 3. MAIN WRAPPER — NO flex-grow */
     .main-wrapper {
         order: 0 !important;
-        flex: 1 0 auto !important; /* Changed from 0 0 auto to grow */
+        flex: 0 0 auto !important;
         display: flex !important;
         flex-direction: column !important;
         padding: 0 !important;
@@ -1771,7 +1771,7 @@ body::after {
     /* 16. FOOTER — solid blue background, grows to fill bottom */
     .footer {
         order: 2 !important;
-        flex: 0 0 auto !important; /* DO NOT Grow to fill screen */
+        flex: 0 0 auto !important; /* Don't grow to prevent exposing background below wave */
         position: relative !important;
         z-index: 2 !important;
         bottom: auto !important;
@@ -1786,7 +1786,7 @@ body::after {
         text-align: center !important;
         line-height: 1.6 !important;
         background: transparent !important; /* Solid color matches wave bottom */
-        margin-top: -11rem !important; /* Overlap the flat part of the wave deeply */
+        margin-top: -6rem !important; /* Overlap the flat part of the wave */
         margin-bottom: 0 !important;
         width: 100% !important;
     }
@@ -1796,7 +1796,7 @@ body::after {
     .app-buttons,
     [class*="footer"] {
         margin-bottom: 0 !important;
-        padding-bottom: 1.5rem !important;
+        padding-bottom: 1rem !important;
     }
 
     .mob-badges {
@@ -1835,13 +1835,13 @@ body::after {
         left: auto !important;
         right: auto !important;
         width: 100% !important;
-        height: 20rem !important;
-        min-height: 20rem !important;
+        height: 14rem !important;
+        min-height: 14rem !important;
         background: transparent !important;
         border-radius: 0 !important;
         overflow: hidden !important;
         pointer-events: none !important;
-        margin-top: 1rem !important;
+        margin-top: auto !important; /* Push wave to absolute bottom of page-wrapper */
         margin-bottom: 0 !important;
     }
 
@@ -1869,7 +1869,7 @@ body::after {
 
     .mobile-footer-bg .left-dots {
         position: absolute !important;
-        bottom: 11rem !important; /* adjusted due to footer overlap */
+        bottom: 6rem !important; /* adjusted due to footer overlap */
         left: 0 !important;
         width: 90px !important;
         height: 100px !important;
@@ -1879,7 +1879,7 @@ body::after {
 
     .mobile-footer-bg .right-dots {
         position: absolute !important;
-        bottom: 11rem !important; /* adjusted due to footer overlap */
+        bottom: 6rem !important; /* adjusted due to footer overlap */
         right: 0 !important;
         width: 90px !important;
         height: 100px !important;
