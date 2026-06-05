@@ -22,9 +22,9 @@ $siteKey = RECAPTCHA_SITE_KEY;
     <title>ADBU Campus Connect</title>
 
     <!-- Match navigation bar to footer color -->
-    <meta name="theme-color" content="#1e3a8a">
+    <meta name="theme-color" content="#1a3ab8">
     <!-- For Android specifically -->
-    <meta name="msapplication-navbutton-color" content="#1e3a8a">
+    <meta name="msapplication-navbutton-color" content="#1a3ab8">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 

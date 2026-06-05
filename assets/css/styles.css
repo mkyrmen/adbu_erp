@@ -1312,7 +1312,7 @@ body::after {
 
     /* 1. Hard stop — page ends at content, no extra scroll */
     html {
-        background-color: #1e3a8a !important;
+        background-color: #1a3ab8 !important;
     }
 
     html, body {
@@ -1803,7 +1803,7 @@ body::after {
         left: 0 !important;
         width: 100% !important;
         height: 100vh !important; /* Extends far down to cover overscroll */
-        background: #1e3a8a !important; /* Solid blue matching wave bottom */
+        background: #1a3ab8 !important; /* Solid blue matching requested nav bar color */
         z-index: -1 !important;
         display: block !important;
         pointer-events: none !important;
@@ -1881,7 +1881,7 @@ body::after {
         left: -1px !important;
         width: calc(100% + 2px) !important;
         height: 100% !important;
-        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 220' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='gf' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%233b82f6'/%3E%3Cstop offset='100%25' stop-color='%231e3a8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,35 C130,95 250,100 390,55 L390,220 L0,220 Z' fill='url(%23gf)'/%3E%3C/svg%3E") no-repeat bottom !important;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 220' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='gf' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%233b82f6'/%3E%3Cstop offset='100%25' stop-color='%231a3ab8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,35 C130,95 250,100 390,55 L390,220 L0,220 Z' fill='url(%23gf)'/%3E%3C/svg%3E") no-repeat bottom !important;
         background-size: 100% 100% !important;
     }
 
