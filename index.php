@@ -404,8 +404,15 @@ $siteKey = RECAPTCHA_SITE_KEY;
 
         </div>
 
-        <!-- Footer -->
+        <div class="mobile-footer-bg">
+            <div class="left-dots"></div>
+            <div class="right-dots"></div>
+        </div>
 
+        <!-- Wave decoration: LAST child so it never overlaps content -->
+        <div class="wave"></div>
+
+        <!-- Footer -->
         <div class="footer">
 
             <div class="mob-badges">
@@ -453,14 +460,6 @@ $siteKey = RECAPTCHA_SITE_KEY;
             </div>
 
         </div>
-
-        <div class="mobile-footer-bg">
-            <div class="left-dots"></div>
-            <div class="right-dots"></div>
-        </div>
-
-        <!-- Wave decoration: LAST child so it never overlaps content -->
-        <div class="wave"></div>
 
     </div>
 

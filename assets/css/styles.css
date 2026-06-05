@@ -1894,12 +1894,93 @@ body::after {
 
     /* 6. Wave/decorative elements must not extend scroll */
     .wave,
+    .mobile-footer-bg,
     [class*="wave"] {
         position: relative !important;
         height: auto !important;
         min-height: unset !important;
         bottom: auto !important;
         overflow: hidden !important;
+    }
+
+    /* 1. Hard stop — page ends at content, no extra scroll */
+    html, body {
+        height: auto !important;
+        min-height: unset !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+
+    /* 2. Page wrapper — fits content exactly */
+    .page-wrapper {
+        height: auto !important;
+        min-height: unset !important;
+        overflow: visible !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* 3. Any background image div — must NOT extend beyond content */
+    .mobile-bg,
+    .bg-section,
+    .hero-bg,
+    [class*="background"],
+    [class*="hero"],
+    [class*="banner"] {
+        height: auto !important;
+        min-height: unset !important;
+        max-height: none !important;
+        position: relative !important;
+    }
+
+    /* 4. Footer is the last element — nothing renders after it */
+    .footer,
+    .app-buttons,
+    [class*="footer"] {
+        position: relative !important;
+        bottom: auto !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 1rem !important;
+    }
+
+    /* 5. Kill any pseudo-elements or after-content adding height */
+    .page-wrapper::after,
+    .page-wrapper::before,
+    body::after,
+    body::before {
+        display: none !important;
+        height: 0 !important;
+        content: none !important;
+    }
+
+    /* UI Tweaks for spacing and height */
+    .mobile-header,
+    .header-section,
+    [class*="mobile-header"] {
+        margin-top: 10% !important;
+        padding-top: 0 !important;
+    }
+
+    .login-card {
+        padding-top: 1.8rem !important;
+        padding-bottom: 2rem !important;
+        row-gap: 1rem !important;
+    }
+
+    /* More breathing room between form fields */
+    .login-card .form-group,
+    .login-card .input-group,
+    .login-card > * {
+        margin-bottom: 0.9rem !important;
+    }
+
+    .btn-signin,
+    button[type="submit"],
+    .sign-in-btn,
+    .signin-btn,
+    [class*="signin"],
+    [class*="sign-in"] {
+        margin-top: 1.2rem !important;
     }
 
 }
