@@ -1791,6 +1791,20 @@ body::after {
         width: 100% !important;
     }
 
+    /* Mask to cover any scroll bounce or content overflow below the wave */
+    .footer::after {
+        content: "" !important;
+        position: absolute !important;
+        top: 6rem !important; /* Starts exactly at the bottom of the 14rem wave */
+        left: 0 !important;
+        width: 100% !important;
+        height: 100vh !important; /* Extends far down to cover overscroll */
+        background: #1e3a8a !important; /* Solid blue matching wave bottom */
+        z-index: -1 !important;
+        display: block !important;
+        pointer-events: none !important;
+    }
+
     /* 4. Footer is the last element — nothing renders after it */
     .footer,
     .app-buttons,
