@@ -1311,6 +1311,10 @@ body::after {
     }
 
     /* 1. Hard stop — page ends at content, no extra scroll */
+    html {
+        background-color: #1e3a8a !important;
+    }
+
     html, body {
         height: auto !important;
         min-height: unset !important;
