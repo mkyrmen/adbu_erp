@@ -404,16 +404,11 @@ $siteKey = RECAPTCHA_SITE_KEY;
 
         </div>
 
-        <div class="mobile-footer-bg">
-            <div class="left-dots"></div>
-            <div class="right-dots"></div>
-        </div>
-
-        <!-- Wave decoration -->
-        <div class="wave"></div>
+        <!-- Footer -->
 
         <div class="footer">
-            <div class="app-buttons">
+
+            <div class="mob-badges">
                 <a href="https://play.google.com/store/apps/details?id=erp.dbuniversity.ac.in&pcampaignid=web_share"
                     target="_blank" rel="noopener noreferrer" class="store-badge playstore-badge"
                     aria-label="Download on Google Play">
@@ -452,11 +447,20 @@ $siteKey = RECAPTCHA_SITE_KEY;
                     </div>
                 </a>
             </div>
+
+            <div class="footer-text">
+                &copy; 2026 Assam Don Bosco University — Campus Connect ERP
+            </div>
+
         </div>
 
-        <div class="copyright">
-            &copy; 2026 Assam Don Bosco University — Campus Connect ERP
+        <div class="mobile-footer-bg">
+            <div class="left-dots"></div>
+            <div class="right-dots"></div>
         </div>
+
+        <!-- Wave decoration: LAST child so it never overlaps content -->
+        <div class="wave"></div>
 
     </div>
 

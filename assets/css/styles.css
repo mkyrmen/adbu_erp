@@ -1334,36 +1334,26 @@ body::after {
         background-size: cover !important;
     }
 
-    /* Clip the background — only show behind header and card */
-    .page-wrapper {
-        background-image: none !important;
+    .page-wrapper,
+    .bg-section,
+    [class*="hero"],
+    [class*="background"],
+    [class*="banner"] {
+        background-position: center 15% !important;
+        background-size: cover !important;
     }
 
-    /* The separate background div — limit its height strictly */
+    /* 3. Any background image div — must NOT extend beyond content */
     .mobile-bg,
     .bg-section,
     .hero-bg,
-    .background-container,
-    [class*="bg-"]:not(.mobile-footer-bg),
-    [class*="hero"] {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        height: 55% !important; /* only covers top half */
-        z-index: 0 !important;
-        overflow: hidden !important;
-    }
-
-    /* Everything else sits on top in normal flow */
-    .mobile-header,
-    .login-card,
-    .wave,
-    .mobile-footer-bg,
-    .footer,
-    .copyright {
+    [class*="background"],
+    [class*="hero"],
+    [class*="banner"] {
+        height: auto !important;
+        min-height: unset !important;
+        max-height: none !important;
         position: relative !important;
-        z-index: 1 !important;
     }
 
     /* Kill any spacer or empty-space elements */
@@ -1778,33 +1768,35 @@ body::after {
         display: none !important;
     }
 
-    /* 16. FOOTER */
-    .footer,
-    .app-buttons,
-    [class*="footer"]:not(.mobile-footer-bg) {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
+    /* 16. FOOTER — solid blue background, grows to fill bottom */
+    .footer {
+        order: 2 !important;
+        flex: 1 0 auto !important; /* Grow to fill screen */
         position: relative !important;
         z-index: 2 !important;
-        justify-content: center !important;
-        gap: 1rem !important;
-        padding: 1rem !important;
-        background-color: #1a3ab8 !important;
+        bottom: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 0 !important;
+        padding: 0 1rem 1rem !important; /* padding top is 0 because it overlaps wave */
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: clamp(0.7rem, 1.5vw, 0.875rem) !important;
+        text-align: center !important;
+        line-height: 1.6 !important;
+        background: #1e3a8a !important; /* Solid color matches wave bottom */
+        margin-top: -6rem !important; /* Overlap the flat part of the wave */
+        margin-bottom: 0 !important;
         width: 100% !important;
     }
 
-    .copyright,
-    [class*="copyright"] {
-        display: block !important;
-        visibility: visible !important;
-        position: relative !important;
-        z-index: 2 !important;
-        text-align: center !important;
-        padding: 0.5rem 1rem 1rem !important;
-        background-color: #1a3ab8 !important;
-        color: white !important;
-        font-size: 0.75rem !important;
+    /* 4. Footer is the last element — nothing renders after it */
+    .footer,
+    .app-buttons,
+    [class*="footer"] {
+        margin-bottom: 0 !important;
+        padding-bottom: 1rem !important;
     }
 
     .mob-badges {
@@ -1834,14 +1826,23 @@ body::after {
     }
 
     /* 17. MOBILE FOOTER WAVE — flush directly against card bottom */
-    .wave,
     .mobile-footer-bg {
+        order: 1 !important;
+        display: block !important;
         position: relative !important;
         z-index: 1 !important;
-        height: auto !important;
-        min-height: unset !important;
-        margin-bottom: -1px !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        width: 100% !important;
+        height: 14rem !important;
+        min-height: 14rem !important;
+        background: transparent !important;
+        border-radius: 0 !important;
         overflow: hidden !important;
+        pointer-events: none !important;
+        margin-top: -1rem !important;
+        margin-bottom: 0 !important;
     }
 
     .mobile-footer-bg::before {
@@ -1887,8 +1888,18 @@ body::after {
     }
 
     /* 18. DESKTOP WAVE — hide it on mobile (it's the last child of .page-wrapper) */
-    .desktop-wave {
+    .wave {
         display: none !important;
+    }
+
+    /* 6. Wave/decorative elements must not extend scroll */
+    .wave,
+    [class*="wave"] {
+        position: relative !important;
+        height: auto !important;
+        min-height: unset !important;
+        bottom: auto !important;
+        overflow: hidden !important;
     }
 
 }
